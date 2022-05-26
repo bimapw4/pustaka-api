@@ -26,13 +26,56 @@ func main() {
 	db.AutoMigrate(&book.Book{})
 
 	book := book.Book{}
-	book.Title = "Man Tiger"
-	book.Price = 9000
-	book.Rating = 5
-	book.Description = "ini buku bagus"
+	// ==============================
+	// create book
+	// ==============================
+	// book.Title = "Atomic Habbit"
+	// book.Price = 9000
+	// book.Rating = 5
+	// book.Description = "ini buku bagus
+	// db.Create(&book)
 
-	db.Create(&book)
+	// ==============================
+	// read one book
+	// ==============================
+	// err = db.First(&book, 2).Error
+	// if err != nil {
+	// 	fmt.Printf("error get data")
+	// }
+	// fmt.Println("title : ", book.Title)
+	// fmt.Println("data : ", book)
 
+	// ==============================
+	// read all book
+	// ==============================
+	// err = db.Find(&book).Error
+	// if err != nil {
+	// 	fmt.Printf("erorr get all book")
+	// }
+	// // fmt.Println(book)
+	// for _, v := range book {
+	// 	fmt.Println("title = ", v.Title)
+	// 	fmt.Println("data = ", v)
+	// }
+
+	// ==============================
+	// update book
+	// ==============================
+	// err = db.Where("id = ? ", 1).First(&book).Error
+	// book.Title = "Man Tiger (lalala)"
+	// db.Save(&book)
+	// fmt.Println("data = ", book)
+	// if err != nil {
+	// 	fmt.Printf("error update data")
+	// }
+
+	// ==============================
+	// Delete book
+	// ==============================
+	err = db.Debug().Where("id = ?", 1).Delete(&book).Error
+	if err != nil {
+		fmt.Printf("error delete book")
+	}
 	router := gin.Default()
 
 	v1 := router.Group("/v1")
